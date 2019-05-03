@@ -24,15 +24,18 @@ async function getUser(userId) {
   const result = await pool.query(queryString);
   const response = await request.get(`${vProtocol}://${vHost}:${vPort}/user/${userId}/vehicle`);
   const vehicles = JSON.parse(response).vehicles;
-  return {
-    id: result.rows[0].id,
-    name: result.rows[0].name,
-    vehicles,
-  };
+  if(result.rows.length){
+      return {
+        id: result.rows[0].id,
+        name: result.rows[0].name,
+        vehicles,
+      };  
+    }
+    return;
 }
 
 async function postUser(data) {
-  const queryString = `INSERT INTO public."user" (name) VALUES ('${data.user.name}')`;
+  const queryString = `INSERT INTO public."user" (name) VALUES ('${data.name}')`;
   const userId = await pool.query(queryString).then(() => pool.query('SELECT currval(\'user_id_seq\');').then(resultQuery => resultQuery.rows[0].currval))
     .catch((error) => {
       console.log('Error on Query\n\n', error);
