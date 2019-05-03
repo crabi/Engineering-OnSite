@@ -19,7 +19,7 @@ SET row_security = off;
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.user (id, name) FROM stdin;
+COPY public."user" (id, name) FROM stdin;
 1	Juanito Perez
 2	Chenchito Ascencio
 3	El Patron
