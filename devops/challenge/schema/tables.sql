@@ -4,7 +4,6 @@
 -- Name: onsite; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-
 ALTER DATABASE onsite OWNER TO postgres;
 
 \connect onsite

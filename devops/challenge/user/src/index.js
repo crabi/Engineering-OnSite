@@ -24,14 +24,14 @@ async function getUser(userId) {
   const result = await pool.query(queryString);
   const response = await request.get(`${vProtocol}://${vHost}:${vPort}/user/${userId}/vehicle`);
   const vehicles = JSON.parse(response).vehicles;
-  if(result.rows.length){
-      return {
-        id: result.rows[0].id,
-        name: result.rows[0].name,
-        vehicles,
-      };  
-    }
-    return;
+  if (result.rows.length) {
+    return {
+      id: result.rows[0].id,
+      name: result.rows[0].name,
+      vehicles,
+    };
+  }
+  return "ID not Found";
 }
 
 async function postUser(data) {
@@ -41,7 +41,7 @@ async function postUser(data) {
       console.log('Error on Query\n\n', error);
     });
 
-  console.log(`inserted user '${data.user.name}' with id: ${userId}`);
+  console.log(`inserted user '${data.name}' with id: ${userId}`);
   const promises = data.user.vehicles.map(vehicle => request.post(`${vProtocol}://${vHost}:${vPort}/user/${userId}/vehicle`,
     { json: vehicle }));
   return Promise.all(promises);
