@@ -1,0 +1,27 @@
+{
+  "name": "user",
+  "version": "1.0.0",
+  "description": "user service",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint .",
+    "lint-fix": "./node_modules/.bin/eslint --fix .",
+    "test": "./node_modules/.bin/mocha test --recursive",
+    "start": "node src/index.js"
+  },
+  "author": "Crabi",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.0.1",
+    "express": "^4.16.4",
+    "pg": "^7.8.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "mocha": "^5.2.0"
+  }
+}
