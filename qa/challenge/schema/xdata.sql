@@ -16,168 +16,58 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Data for Name: policy; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
---
--- Name: policy; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.policy (
-    id integer NOT NULL,
-    user_id integer NOT NULL,
-    vehicle_id integer NOT NULL,
-    description character varying(100)
-);
-
-
-ALTER TABLE public.policy OWNER TO postgres;
-
---
--- Name: policy_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.policy_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.policy_id_seq OWNER TO postgres;
-
---
--- Name: policy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.policy_id_seq OWNED BY public.policy.id;
+COPY public.policy (id, user_id, vehicle_id, description) FROM stdin;
+1	1	2	Cobertura amplia
+\.
 
 
 --
--- Name: user; Type: TABLE; Schema: public; Owner: postgres
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public."user" (
-    id integer NOT NULL,
-    name character varying(100)
-);
-
-
-ALTER TABLE public."user" OWNER TO postgres;
-
---
--- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.user_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.user_id_seq OWNER TO postgres;
-
---
--- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.user_id_seq OWNED BY public."user".id;
+COPY public."user" (id, name) FROM stdin;
+1	Juanito Perez
+2	Chenchito Ascencio
+3	El Patron
+5	Omar Puentes
+\.
 
 
 --
--- Name: vehicle; Type: TABLE; Schema: public; Owner: postgres
+-- Data for Name: vehicle; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.vehicle (
-    id integer NOT NULL,
-    user_id integer NOT NULL,
-    model character varying(100)
-);
-
-
-ALTER TABLE public.vehicle OWNER TO postgres;
-
---
--- Name: vehicle_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.vehicle_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.vehicle_id_seq OWNER TO postgres;
-
---
--- Name: vehicle_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.vehicle_id_seq OWNED BY public.vehicle.id;
+COPY public.vehicle (id, user_id, model) FROM stdin;
+1	1	Honda CRV 2015
+2	1	Honda Civic 2019
+3	3	Ford Lobo 2012
+4	5	VW Combi 1984
+7	1	KIA Forte 2016
+\.
 
 
 --
--- Name: policy id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: policy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.policy ALTER COLUMN id SET DEFAULT nextval('public.policy_id_seq'::regclass);
-
-
---
--- Name: user id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."user" ALTER COLUMN id SET DEFAULT nextval('public.user_id_seq'::regclass);
+SELECT pg_catalog.setval('public.policy_id_seq', 1, true);
 
 
 --
--- Name: vehicle id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.vehicle ALTER COLUMN id SET DEFAULT nextval('public.vehicle_id_seq'::regclass);
-
-
---
--- Name: policy policy_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.policy
-    ADD CONSTRAINT policy_pkey PRIMARY KEY (id);
+SELECT pg_catalog.setval('public.user_id_seq', 5, true);
 
 
 --
--- Name: user user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: vehicle_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
-
-
---
--- Name: vehicle vehicle_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.vehicle
-    ADD CONSTRAINT vehicle_pkey PRIMARY KEY (id);
+SELECT pg_catalog.setval('public.vehicle_id_seq', 7, true);
 
 
 --
