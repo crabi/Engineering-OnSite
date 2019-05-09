@@ -11,5 +11,6 @@ docker run \
     -e POSTGRES_PASSWORD=$PGPASSWORD \
     -e POSTGRES_DB=$PG_DATABASE \
     -p 5432:5432 \
+    -d \
     -v $(pwd)/schema:/docker-entrypoint-initdb.d/ \
     library/postgres

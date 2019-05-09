@@ -1,0 +1,49 @@
+version: '3.3'
+
+services:
+    user:
+      build:
+        context: ./
+        dockerfile: user/Dockerfile
+      image: user
+      container_name: user
+      restart: unless-stopped
+      ports:
+       - "8080:8080"
+      links: 
+        - vehicle
+        - postgres
+
+    vehicle:
+      build:
+        context: ./
+        dockerfile: vehicle/Dockerfile
+      image: vehicle
+      container_name: vehicle
+      restart: unless-stopped
+      ports:
+       - "8085:8085"
+      links:
+        - postgres
+
+    policy:
+      build:
+        context: ./
+        dockerfile: policy/Dockerfile
+      image: policy
+      container_name: policy
+      restart: unless-stopped
+      ports:
+       - "8086:8086"
+      links:
+        - postgres
+    postgres:
+      image: postgres
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=onsite-db
+      volumes:
+        - ./schema:/var/lib/postgresql/data
+      ports:
+        - 5432:5432

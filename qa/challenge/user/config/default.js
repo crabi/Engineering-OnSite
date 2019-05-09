@@ -5,11 +5,11 @@ module.exports = {
   services: {
     vehicle: {
       protocol: 'http',
-      host: 'localhost',
+      host: '0.0.0.0',
       port: '8085',
     },
     database: {
-      host: 'localhost',
+      host: 'postgres',
       port: 5432,
       user: 'postgres',
       database: 'onsite',

@@ -4,6 +4,9 @@
 
 -- Dumped from database version 10.5
 -- Dumped by pg_dump version 10.5
+ALTER DATABASE onsite OWNER TO postgres;
+
+\connect onsite
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
