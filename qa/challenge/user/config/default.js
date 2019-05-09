@@ -5,7 +5,7 @@ module.exports = {
   services: {
     vehicle: {
       protocol: 'http',
-      host: '0.0.0.0',
+      host: 'vehicle',
       port: '8085',
     },
     database: {

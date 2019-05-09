@@ -12,6 +12,7 @@ services:
        - "8080:8080"
       links: 
         - vehicle
+      depends_on:
         - postgres
 
     vehicle:
@@ -23,7 +24,7 @@ services:
       restart: unless-stopped
       ports:
        - "8085:8085"
-      links:
+      depends_on:
         - postgres
 
     policy:
@@ -35,14 +36,15 @@ services:
       restart: unless-stopped
       ports:
        - "8086:8086"
-      links:
+      depends_on:
         - postgres
+
     postgres:
       image: postgres
       environment:
         - POSTGRES_USER=postgres
         - POSTGRES_PASSWORD=postgres
-        - POSTGRES_DB=onsite-db
+        - POSTGRES_DB=onsite
       volumes:
         - ./schema:/var/lib/postgresql/data
       ports:
