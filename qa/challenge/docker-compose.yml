@@ -40,12 +40,15 @@ services:
         - postgres
 
     postgres:
-      image: postgres:latest
-      environment:
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
-        - POSTGRES_DB=onsite
+      image: library/postgres:10
       volumes:
-        - ./schema:/docker-entrypoint-initdb.d/
+        - "./schema/tables.sql:/docker-entrypoint-initdb.d/tables.sql"
+        - "./schema/xdata.sql:/docker-entrypoint-initdb.d/xdata.sql"
       ports:
-        - 5432:5432
+        - "5432:5432"
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: onsite
+      
+      

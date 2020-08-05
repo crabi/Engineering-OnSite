@@ -9,7 +9,7 @@ module.exports = {
       port: '8085',
     },
     database: {
-      host: 'postgres',
+      host: 'localhost',
       port: 5432,
       user: 'postgres',
       database: 'onsite',

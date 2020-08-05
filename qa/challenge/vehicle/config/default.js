@@ -4,7 +4,7 @@ module.exports = {
   },
   services: {
     database: {
-      host: 'postgres',
+      host: 'localhost',
       port: 5432,
       user: 'postgres',
       database: 'onsite',
